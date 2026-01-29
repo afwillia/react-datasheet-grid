@@ -1,12 +1,20 @@
 {
-  "name": "react-datasheet-grid",
-  "version": "4.11.5",
+  "name": "@sage-bionetworks/react-datasheet-grid",
+  "publishConfig": {
+	  "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/sage-bionetworks/react-datasheet-grid.git"
+  },
+  "version": "4.11.5-sage.1",
   "description": "An Excel-like React component to create beautiful spreadsheets.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rm -f tsconfig.tsbuildinfo && rimraf ./dist && tsc && cpx \"src/**/*.css\" dist",
-    "start": "concurrently \"tsc --watch\" \"cpx \\\"src/**/*.css\\\" dist --watch\"",
+    "build": "tsup",
+    "start": "tsup --watch",
     "format": "prettier --write src/. && prettier --write example/src/.",
     "lint": "eslint src/.",
     "test": "jest"
@@ -22,9 +30,17 @@
     "notion",
     "table"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+   "./dist/style.css": "./dist/style.css" 
+  },
   "author": "Nicolas Keller (https://github.com/nick-keller)",
+  "type": "module",
   "license": "MIT",
-  "repository": "nick-keller/react-datasheet-grid",
   "homepage": "https://react-datasheet-grid.netlify.app/",
   "devDependencies": {
     "@jest/types": "^27.4.2",
@@ -52,13 +68,14 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.9.1",
+    "tsup": "^8.5.1",
     "typescript": "^4.9.4"
   },
   "files": [
     "dist/**/*"
   ],
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.0.0-beta.18",

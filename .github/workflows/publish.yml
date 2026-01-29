@@ -1,0 +1,29 @@
+name: Publish to GitHub Packages
+on:
+  push:
+    branches:
+      - master
+      - SWC-7683
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sage-bionetworks'
+
+      - run: pnpm install
+      - run: pnpm run build
+      - run: pnpm publish --no-git-checks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

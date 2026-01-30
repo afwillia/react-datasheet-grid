@@ -1,6 +1,6 @@
 {
   "name": "@afwillia/react-datasheet-grid",
-  "prepublishConfig": {
+  "publishConfig": {
 	  "registry": "https://npm.pkg.github.com"
   },
   "repository": {
@@ -13,8 +13,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --clean --minify && cp src/style.css dist/style.css ",
-    "start": "tsup src/index.tsx --format esm,cjs --watch --dts",
+    "build": "tsup",
+    "start": "tsup --watch",
     "format": "prettier --write src/. && prettier --write example/src/.",
     "lint": "eslint src/.",
     "test": "jest"

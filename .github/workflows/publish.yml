@@ -1,7 +1,9 @@
 name: Publish to GitHub Packages
 on:
   push:
-    branches: [main]
+    branches:
+      - master
+      - esnext-migration
 jobs:
   publish:
     runs-on: ubuntu-latest

@@ -1,5 +1,12 @@
 {
-  "name": "react-datasheet-grid",
+  "name": "@afwillia/react-datasheet-grid",
+  "prepublishConfig": {
+	  "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/afwillia/react-datasheet-grid.git"
+  },
   "type": "module",
   "version": "4.11.5",
   "description": "An Excel-like React component to create beautiful spreadsheets.",

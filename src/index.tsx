@@ -38,3 +38,4 @@ export {
   createContextMenuComponent,
   defaultRenderItem as renderContextMenuItem,
 } from './components/ContextMenu'
+export * from './types';

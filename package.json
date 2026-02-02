@@ -1,11 +1,11 @@
 {
   "name": "@sage-bionetworks/react-datasheet-grid",
   "publishConfig": {
-	  "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
-	  "type": "git",
-	  "url": "git+https://github.com/sage-bionetworks/react-datasheet-grid.git"
+    "type": "git",
+    "url": "git+https://github.com/sage-bionetworks/react-datasheet-grid.git"
   },
   "version": "4.11.5-sage.1",
   "description": "An Excel-like React component to create beautiful spreadsheets.",
@@ -13,8 +13,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup",
-    "start": "tsup --watch",
+    "build": "vite build",
+    "start": "vite preview",
     "format": "prettier --write src/. && prettier --write example/src/.",
     "lint": "eslint src/.",
     "test": "jest"
@@ -36,7 +36,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-   "./dist/style.css": "./dist/style.css" 
+    "./dist/style.css": "./dist/style.css"
   },
   "author": "Nicolas Keller (https://github.com/nick-keller)",
   "type": "module",
@@ -53,6 +53,7 @@
     "@types/throttle-debounce": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
+    "@vitejs/plugin-react": "^5.1.3",
     "concurrently": "^6.2.0",
     "cpx": "^1.5.0",
     "eslint": "^7.29.0",
@@ -68,8 +69,10 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.9.1",
-    "tsup": "^8.5.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-react": "^4.0.1"
   },
   "files": [
     "dist/**/*"

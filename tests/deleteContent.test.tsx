@@ -1,5 +1,5 @@
 import React from 'react'
-import '@testing-library/jest-dom'
+import { test, expect, vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import { render, act } from '@testing-library/react'
 import {
@@ -10,7 +10,7 @@ import {
   DataSheetGridRef,
 } from '../src'
 
-jest.mock('react-resize-detector', () => ({
+vi.mock('react-resize-detector', () => ({
   useResizeDetector: () => ({ width: 100, height: 100 }),
 }))
 
@@ -21,7 +21,7 @@ const columns: Column[] = [
 
 test('Backspace to delete cell', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -50,7 +50,7 @@ test('Backspace to delete cell', () => {
 
 test('Delete to delete cell', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -79,7 +79,7 @@ test('Delete to delete cell', () => {
 
 test('Delete selection', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -113,7 +113,7 @@ test('Delete selection', () => {
 
 test('Delete entire grid', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -147,7 +147,7 @@ test('Delete entire grid', () => {
 
 test('Delete disabled cells', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -184,7 +184,7 @@ test('Delete disabled cells', () => {
 
 test('Delete partially empty selection', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -230,7 +230,7 @@ test('Delete partially empty selection', () => {
 
 test('Delete empty selection', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -270,7 +270,7 @@ test('Delete empty selection', () => {
 
 test('Delete empty cell', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -304,7 +304,7 @@ test('Delete empty cell', () => {
 
 test('Delete empty row', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -331,7 +331,7 @@ test('Delete empty row', () => {
 
 test('Delete empty rows', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -365,7 +365,7 @@ test('Delete empty rows', () => {
 
 test('Delete empty locked rows', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid

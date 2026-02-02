@@ -1,5 +1,5 @@
 import React from 'react'
-import '@testing-library/jest-dom'
+import { test, expect, vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import { render, screen } from '@testing-library/react'
 import {
@@ -10,7 +10,7 @@ import {
   DataSheetGridRef,
 } from '../src'
 
-jest.mock('react-resize-detector', () => ({
+vi.mock('react-resize-detector', () => ({
   useResizeDetector: () => ({ width: 100, height: 100 }),
 }))
 
@@ -21,7 +21,7 @@ const columns: Column[] = [
 
 test('Add single row', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -31,7 +31,7 @@ test('Add single row', () => {
       ]}
       onChange={onChange}
       columns={columns}
-      createRow={jest.fn().mockReturnValueOnce({ id: 3 })}
+      createRow={vi.fn().mockReturnValueOnce({ id: 3 })}
       ref={ref}
     />
   )
@@ -72,7 +72,7 @@ test('No add button when addRowsComponent receives false', () => {
 
 test('Add multiple rows', () => {
   const ref = { current: null as unknown as DataSheetGridRef }
-  const onChange = jest.fn()
+  const onChange = vi.fn()
 
   render(
     <DataSheetGrid
@@ -82,7 +82,7 @@ test('Add multiple rows', () => {
       ]}
       onChange={onChange}
       columns={columns}
-      createRow={jest
+      createRow={vi
         .fn()
         .mockReturnValueOnce({ id: 3 })
         .mockReturnValueOnce({ id: 4 })

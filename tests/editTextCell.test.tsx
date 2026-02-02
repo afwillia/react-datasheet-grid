@@ -1,5 +1,5 @@
 import React from 'react'
-import '@testing-library/jest-dom'
+import { test, expect, vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import { act, render } from '@testing-library/react'
 import {
@@ -13,7 +13,7 @@ import {
 // @ts-ignore
 import { DataWrapper } from './helpers/DataWrapper'
 
-jest.mock('react-resize-detector', () => ({
+vi.mock('react-resize-detector', () => ({
   useResizeDetector: () => ({ width: 100, height: 100 }),
 }))
 

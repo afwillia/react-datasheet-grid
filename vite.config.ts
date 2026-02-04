@@ -19,6 +19,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
+    cssCodeSplit: false,
     rollupOptions: {
       // Ensure peer dependencies are not bundled
       external: ['react', 'react-dom', 'react/jsx-runtime'],
@@ -30,7 +31,7 @@ export default defineConfig({
         },
         // This ensures the CSS is extracted into a single file
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) return 'style.css';
           return assetInfo.name;
         },
       },

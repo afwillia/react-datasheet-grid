@@ -1,8 +1,6 @@
 {
   "name": "@sage-bionetworks/react-datasheet-grid",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sage-bionetworks/react-datasheet-grid.git"

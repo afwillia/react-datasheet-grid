@@ -19,7 +19,7 @@ const columns: Column[] = [
   keyColumn('lastName', textColumn),
 ]
 
-test('Add single row', () => {
+test('Add single row', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -36,7 +36,7 @@ test('Add single row', () => {
     />
   )
 
-  userEvent.click(screen.getByText('Add'))
+  await userEvent.click(screen.getByText('Add'))
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -70,7 +70,7 @@ test('No add button when addRowsComponent receives false', () => {
   expect(screen.queryByText('Add')).not.toBeInTheDocument()
 })
 
-test('Add multiple rows', () => {
+test('Add multiple rows', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -91,8 +91,8 @@ test('Add multiple rows', () => {
     />
   )
 
-  userEvent.type(screen.getByRole('spinbutton'), '{selectall}3')
-  userEvent.click(screen.getByText('Add'))
+  await userEvent.type(screen.getByRole('spinbutton'), '{selectall}3')
+  await userEvent.click(screen.getByText('Add'))
 
   expect(onChange).toHaveBeenCalledWith(
     [

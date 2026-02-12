@@ -2,6 +2,8 @@ name: Publish to npm
 
 on:
   push:
+    branch:
+      - SWC-7683
     tags:
       - 'sage.*' # Trigger only on tags starting with sage.
 
@@ -12,8 +14,6 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
     steps:
       - uses: actions/checkout@v4
 
@@ -24,3 +24,5 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm publish --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

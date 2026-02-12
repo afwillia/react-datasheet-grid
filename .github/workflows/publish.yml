@@ -2,8 +2,6 @@ name: Publish to npm
 
 on:
   push:
-    branch:
-      - SWC-7683
     tags:
       - 'sage.*' # Trigger only on tags starting with sage.
 

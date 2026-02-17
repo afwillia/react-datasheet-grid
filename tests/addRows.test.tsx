@@ -1,7 +1,7 @@
 import React from 'react'
 import { test, expect, vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import {
   DataSheetGrid,
   Column,
@@ -70,7 +70,7 @@ test('No add button when addRowsComponent receives false', () => {
   expect(screen.queryByText('Add')).not.toBeInTheDocument()
 })
 
-test('Add multiple rows', () => {
+test('Add multiple rows', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -91,8 +91,8 @@ test('Add multiple rows', () => {
     />
   )
 
-  userEvent.type(screen.getByRole('spinbutton'), '{selectall}3')
-  userEvent.click(screen.getByText('Add'))
+  await userEvent.type(screen.getByRole('spinbutton'), '{selectall}3')
+  await userEvent.click(screen.getByText('Add'))
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -119,9 +119,11 @@ test('Add multiple rows', () => {
     [{ type: 'CREATE', fromRowIndex: 2, toRowIndex: 5 }]
   )
 
-  expect(ref.current.activeCell).toEqual({
-    col: 0,
-    colId: 'firstName',
-    row: 4,
+  await waitFor(() => {
+    expect(ref.current.activeCell).toEqual({
+      col: 0,
+      colId: 'firstName',
+      row: 4,
+    })
   })
 })

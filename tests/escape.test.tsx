@@ -23,14 +23,14 @@ const columns: Column[] = [
   keyColumn('lastName', textColumn),
 ]
 
-test('Escape from editing', () => {
+test('Escape from editing', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   render(<DataSheetGrid value={data} columns={columns} ref={ref} />)
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[Enter]')
-  userEvent.keyboard('[Escape]')
+  await userEvent.keyboard('[Enter]')
+  await userEvent.keyboard('[Escape]')
   expect(ref.current.activeCell).toEqual({
     col: 0,
     colId: 'firstName',
@@ -38,7 +38,7 @@ test('Escape from editing', () => {
   })
 })
 
-test('Escape from selection', () => {
+test('Escape from selection', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   render(<DataSheetGrid value={data} columns={columns} ref={ref} />)
 
@@ -49,7 +49,7 @@ test('Escape from selection', () => {
     })
   )
 
-  userEvent.keyboard('[Escape]')
+  await userEvent.keyboard('[Escape]')
   expect(ref.current.selection).toEqual({
     min: {
       col: 0,
@@ -64,12 +64,12 @@ test('Escape from selection', () => {
   })
 })
 
-test('Escape from active', () => {
+test('Escape from active', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   render(<DataSheetGrid value={data} columns={columns} ref={ref} />)
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[Escape]')
+  await userEvent.keyboard('[Escape]')
   expect(ref.current.activeCell).toEqual(null)
 })

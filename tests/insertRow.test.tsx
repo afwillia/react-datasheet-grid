@@ -19,7 +19,7 @@ const columns: Column[] = [
   keyColumn('lastName', textColumn),
 ]
 
-test('Insert row with Shift+Enter', () => {
+test('Insert row with Shift+Enter', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -38,7 +38,7 @@ test('Insert row with Shift+Enter', () => {
 
   act(() => ref.current.setActiveCell({ col: 1, row: 0 }))
 
-  userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
+  await userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -62,7 +62,7 @@ test('Insert row with Shift+Enter', () => {
   })
 })
 
-test('Insert row from selection', () => {
+test('Insert row from selection', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -85,7 +85,7 @@ test('Insert row from selection', () => {
     })
   )
 
-  userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
+  await userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -102,7 +102,7 @@ test('Insert row from selection', () => {
   })
 })
 
-test('Insert row with locked rows', () => {
+test('Insert row with locked rows', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -121,7 +121,7 @@ test('Insert row with locked rows', () => {
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
+  await userEvent.keyboard('[ShiftLeft>][Enter][/ShiftLeft]')
 
   expect(onChange).not.toHaveBeenCalled()
 })

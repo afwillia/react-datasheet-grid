@@ -19,7 +19,7 @@ const columns: Column[] = [
   keyColumn('lastName', textColumn),
 ]
 
-test('Duplicate row with Cmd+D', () => {
+test('Duplicate row with Cmd+D', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -38,7 +38,7 @@ test('Duplicate row with Cmd+D', () => {
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[MetaLeft>]d[/MetaLeft]')
+  await userEvent.keyboard('[MetaLeft>]d[/MetaLeft]')
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -62,7 +62,7 @@ test('Duplicate row with Cmd+D', () => {
   })
 })
 
-test('Duplicate row with Ctrl+D', () => {
+test('Duplicate row with Ctrl+D', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -85,7 +85,7 @@ test('Duplicate row with Ctrl+D', () => {
     })
   )
 
-  userEvent.keyboard('[ControlLeft>]d[/ControlLeft]')
+  await userEvent.keyboard('[ControlLeft>]d[/ControlLeft]')
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -109,7 +109,7 @@ test('Duplicate row with Ctrl+D', () => {
   })
 })
 
-test('Duplicate multiple rows', () => {
+test('Duplicate multiple rows', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
   const duplicateRow = vi.fn(({ rowData }) => ({ ...rowData }))
@@ -135,7 +135,7 @@ test('Duplicate multiple rows', () => {
     })
   )
 
-  userEvent.keyboard('[ControlLeft>]d[/ControlLeft]')
+  await userEvent.keyboard('[ControlLeft>]d[/ControlLeft]')
 
   expect(onChange).toHaveBeenCalledWith(
     [
@@ -175,7 +175,7 @@ test('Duplicate multiple rows', () => {
   })
 })
 
-test('Try to duplicate locked rows', () => {
+test('Try to duplicate locked rows', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   const onChange = vi.fn()
 
@@ -195,7 +195,7 @@ test('Try to duplicate locked rows', () => {
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[MetaLeft>]d[/MetaLeft]')
+  await userEvent.keyboard('[MetaLeft>]d[/MetaLeft]')
 
   expect(onChange).not.toHaveBeenCalled()
 })

@@ -23,13 +23,13 @@ const columns: Column[] = [
   keyColumn('lastName', textColumn),
 ]
 
-test('Select all with Cmd+A', () => {
+test('Select all with Cmd+A', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   render(<DataSheetGrid value={data} columns={columns} ref={ref} />)
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[MetaLeft>]a[/MetaLeft]')
+  await userEvent.keyboard('[MetaLeft>]a[/MetaLeft]')
   expect(ref.current.selection).toEqual({
     min: {
       col: 0,
@@ -44,13 +44,13 @@ test('Select all with Cmd+A', () => {
   })
 })
 
-test('Select all with Ctrl+A', () => {
+test('Select all with Ctrl+A', async () => {
   const ref = { current: null as unknown as DataSheetGridRef }
   render(<DataSheetGrid value={data} columns={columns} ref={ref} />)
 
   act(() => ref.current.setActiveCell({ col: 0, row: 0 }))
 
-  userEvent.keyboard('[ControlLeft>]a[/ControlLeft]')
+  await userEvent.keyboard('[ControlLeft>]a[/ControlLeft]')
   expect(ref.current.selection).toEqual({
     min: {
       col: 0,
